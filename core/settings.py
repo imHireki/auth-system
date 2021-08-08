@@ -21,7 +21,7 @@ INSTALLED_APPS = [
     'djoser',
     
     # Apps
-    'apps.accounts',
+    'apps.account',
 ]
 
 MIDDLEWARE = [
@@ -95,9 +95,11 @@ AUTH_USER_MODEL = 'account.UserAccount'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = '' # setted at local_settings.py
+EMAIL_HOST_PASSWORD = '' # setted at local_settings.py
 EMAIL_USE_TLS = True
+
+from .local_settings import *
 
 DJOSER = {
     'LOGIN_FIELD': 'email',
@@ -116,7 +118,11 @@ DJOSER = {
     'SEND_ACTIVATION_EMAIL': True,
     'ACTIVATION_URL': 'activate/{uid}/{token}',
 
-    'SERIALIZERS': {}
+    'SERIALIZERS': {
+        'user': 'apps.account.serializers.UserCreateSerializer',
+        'user_create': 'apps.account.serializers.UserCreateSerializer',
+        'user_delete': 'djoser.serializers.UserDeleteSerializer',
+    }
 }
 
 REST_FRAMEWORK = {
