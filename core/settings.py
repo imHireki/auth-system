@@ -112,10 +112,12 @@ DJOSER = {
     'SET_USERNAME_RETYPE': True,
     'SET_PASSWORD_RETYPE': True,
 
+    # To be used on front-end
     'USERNAME_RESET_CONFIRM_URL': 'email/reset/confirm/{uid}/{token}',
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
 
     'SEND_ACTIVATION_EMAIL': True,
+    # To be used on front-end
     'ACTIVATION_URL': 'activate/{uid}/{token}',
 
     'SERIALIZERS': {
@@ -124,8 +126,10 @@ DJOSER = {
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
     }
 }
-
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
