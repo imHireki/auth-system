@@ -43,6 +43,12 @@
 # -d "@tools/data.json" # email, password
 # url "http://127.0.0.1:8000/auth/jwt/create/"
 
+-i 
+-X POST
+-H "Content-Type: application/json" 
+-d "@tools/data.json" # email, password
+url "http://127.0.0.1:8000/api/v1/login/"
+
 # --
 
 # Refreshes the access token
@@ -68,8 +74,8 @@
 
 # Confirm password reset
 
--i 
--X POST
--H "Content-Type: application/json" 
--d "@tools/data.json" # uid token new_password  re_new_password
-url "http://127.0.0.1:8000/auth/users/reset_password_confirm/"
+# -i 
+# -X POST
+# -H "Content-Type: application/json" 
+# -d "@tools/data.json" # uid token new_password  re_new_password
+# url "http://127.0.0.1:8000/auth/users/reset_password_confirm/"
